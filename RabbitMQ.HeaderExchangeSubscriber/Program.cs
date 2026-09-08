@@ -19,9 +19,16 @@ var consumer = new AsyncEventingBasicConsumer(channel);
 
 var queueDeclareResult = await channel.QueueDeclareAsync();
 var randomQueueName = queueDeclareResult.QueueName;
-// var routeKey = "*.Error.*";
-var routeKey = "Info.#";
-await channel.QueueBindAsync(randomQueueName, "logs-topic", routeKey);
+
+var headers = new Dictionary<string, object?>{
+    { "format4", "pdf" },
+    {"shape", "a4"},
+    {"x-match", "any"}
+};
+
+await channel.ExchangeDeclareAsync("header-exchange",durable: true, type: ExchangeType.Headers );
+
+await channel.QueueBindAsync(randomQueueName, "header-exchange",string.Empty,headers);
 
 consumer.ReceivedAsync += async (sender, ea) =>
 {
@@ -29,10 +36,8 @@ consumer.ReceivedAsync += async (sender, ea) =>
 
     await Task.Delay(1500);
 
-    Console.WriteLine("GELEN LOG: " + message);
+    Console.WriteLine("GELEN MESAJ: " + message);
     
-    // File.AppendAllText("log.txt", message+ "\n");
-
     await channel.BasicAckAsync( deliveryTag: ea.DeliveryTag, multiple: false);
 };
 
