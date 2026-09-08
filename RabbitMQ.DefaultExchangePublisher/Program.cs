@@ -8,11 +8,12 @@ await using var connection = await factory.CreateConnectionAsync();
 await using var channel = await connection.CreateChannelAsync();
 
 // queue olması gerektiği için bir queue tanımlıyorum
-await channel.QueueDeclareAsync(queue:"Hello-Queue", durable: true, /* RabbitMQ yeniden başlarsa kuyruk silinmesin */ exclusive: false, autoDelete: false,arguments:null);
+await channel.QueueDeclareAsync(queue:"Hello-Queue", durable: true, /* RabbitMQ yeniden başlarsa kuyruk silinmesin */ exclusive: false , autoDelete: false,arguments:null);
 // autoDelete true olursa eğer o queueyu dinleyen bir tane bile consumer olmazsa queue'yu otomatik siler. exclusive true olursa queue'ya farklı servisler tarafından erişilemez.
+// exclusive: false = queue'nun diğer connection'lara açık olacağını söyler. Eğer diğer connectionlara açmazsak queue'nun üzerinde bulunduğu connection koptuğunda queue da silinip gider ve geri getirelemez.
 
-var properties = new BasicProperties();
-properties.Persistent = true;
+var properties = new BasicProperties(); // kuyruğa gönderilecek mesajın özelliklerini belirleyebildiğimiz alan
+properties.Persistent = true; // mesajın kalıcılığını sağlar, RAM'de değil diskte tutulmasını sağlar mesajın.
 
 foreach (var x in Enumerable.Range(1, 50))
 {
@@ -20,9 +21,9 @@ foreach (var x in Enumerable.Range(1, 50))
     var body = Encoding.UTF8.GetBytes(message);
 
     await channel.BasicPublishAsync(
-        exchange: string.Empty, 
+        exchange: string.Empty, // default exchange, exchange içermez
         routingKey: "Hello-Queue", 
-        mandatory: true, 
+        mandatory: true, // mesajı gönderdiğimde iletebiliyorsan en az 1 kuyruğa ilet, iletemezsen de mesajı yok etme, publisher'a geri döndür. 
         basicProperties: properties, 
         body: body
     );

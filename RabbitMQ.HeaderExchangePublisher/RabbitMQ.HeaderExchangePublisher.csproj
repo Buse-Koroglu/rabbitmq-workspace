@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\RabbitMQ.DirectExchangePublisher\RabbitMQ.DirectExchangePublisher.csproj" />
+      <ProjectReference Include="..\RabbitMQ.SharedClassForHeaderExchange\RabbitMQ.SharedClassForHeaderExchange.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,7 @@
 ﻿using System.Text;
+using System.Text.Json;
 using RabbitMQ.Client;
+using RabbitMQ.SharedClassForHeaderExchange;
 
 var factory = new ConnectionFactory
 {
@@ -24,7 +26,10 @@ var properties = new BasicProperties
     Headers = headers
 };
 
-await channel.BasicPublishAsync("header-exchange", string.Empty, true, properties, Encoding.UTF8.GetBytes("Bu benim Header Exchange Örnek Mesajım.") );
+var product = new Product{Id = 342,Name = "Trileçe",Price = 125,Stock = 15};
+var productJsonString = JsonSerializer.Serialize(product);
+
+await channel.BasicPublishAsync("header-exchange", string.Empty, true, properties,Encoding.UTF8.GetBytes(productJsonString) );
 
 Console.WriteLine("Mesaj Gönderilmişitir.");
 

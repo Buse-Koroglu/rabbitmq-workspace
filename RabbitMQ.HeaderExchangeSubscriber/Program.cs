@@ -1,6 +1,8 @@
 ﻿using System.Text;
+using System.Text.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using RabbitMQ.SharedClassForHeaderExchange;
 
 var factory = new ConnectionFactory
 {
@@ -33,10 +35,12 @@ await channel.QueueBindAsync(randomQueueName, "header-exchange",string.Empty,hea
 consumer.ReceivedAsync += async (sender, ea) =>
 {
     var message = Encoding.UTF8.GetString(ea.Body.Span);
+    
+    var product = JsonSerializer.Deserialize<Product>(message);
 
     await Task.Delay(1500);
 
-    Console.WriteLine("GELEN MESAJ: " + message);
+    Console.WriteLine($"GELEN MESAJ: {product.Id}, {product.Name}, {product.Price}, {product.Stock}");
     
     await channel.BasicAckAsync( deliveryTag: ea.DeliveryTag, multiple: false);
 };
