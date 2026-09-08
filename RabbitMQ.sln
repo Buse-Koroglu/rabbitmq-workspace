@@ -1,8 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.Publisher", "RabbitMQ.Publisher\RabbitMQ.Publisher.csproj", "{F5DC3337-FDA5-4028-8F85-108661495D7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.DefaultExchangePublisher", "RabbitMQ.DefaultExchangePublisher\RabbitMQ.DefaultExchangePublisher.csproj", "{F5DC3337-FDA5-4028-8F85-108661495D7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.Subscriber", "RabbitMQ.Subscriber\RabbitMQ.Subscriber.csproj", "{4CECF8A5-9B09-4C79-AF85-5EE48EB58113}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.DefaultExchangeSubscriber", "RabbitMQ.DefaultExchangeSubscriber\RabbitMQ.DefaultExchangeSubscriber.csproj", "{4CECF8A5-9B09-4C79-AF85-5EE48EB58113}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.FanoutExchangePublisher", "RabbitMQ.FanoutExchangePublisher\RabbitMQ.FanoutExchangePublisher.csproj", "{4EBDB590-FA0F-448F-82D3-63BAA8F21B61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.FanoutExchangeSubscriber", "RabbitMQ.FanoutExchangeSubscriber\RabbitMQ.FanoutExchangeSubscriber.csproj", "{B39E7445-0B74-406D-86C9-FE4C22DA8941}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +22,13 @@ Global
 		{4CECF8A5-9B09-4C79-AF85-5EE48EB58113}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CECF8A5-9B09-4C79-AF85-5EE48EB58113}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CECF8A5-9B09-4C79-AF85-5EE48EB58113}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EBDB590-FA0F-448F-82D3-63BAA8F21B61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EBDB590-FA0F-448F-82D3-63BAA8F21B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EBDB590-FA0F-448F-82D3-63BAA8F21B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EBDB590-FA0F-448F-82D3-63BAA8F21B61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B39E7445-0B74-406D-86C9-FE4C22DA8941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B39E7445-0B74-406D-86C9-FE4C22DA8941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B39E7445-0B74-406D-86C9-FE4C22DA8941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B39E7445-0B74-406D-86C9-FE4C22DA8941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

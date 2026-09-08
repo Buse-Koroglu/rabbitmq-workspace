@@ -1,1 +1,15 @@
+## .NET derleme ve ara dosyaları
+[Bb]in/
+[Oo]bj/
+
+## IDE ve Araçlar (Rider, Visual Studio, VS Code)
 .idea/
+*.sln.iml
+.vs/
+*.user
+*.userosscache
+*.suo
+
+## OS dosyaları
+.DS_Store
+Thumbs.db
